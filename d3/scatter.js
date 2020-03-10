@@ -7,17 +7,20 @@ define('scatter', ['d3'], function (d3) {
             height = height - margin.top - margin.bottom;
         
         var xRange = d3.scaleLinear()
-            .range([0, width]);
+            .range([0, width])
+            .nice();
 
         var yRange = d3.scaleLinear()
-            .range([height, 0]);
+            .range([height, 0])
+            .nice();
 
         var color = d3.scaleOrdinal(d3.schemeCategory10);
 
-        var xAxis = d3.axisBottom(xRange);
-        var yAxis = d3.axisLeft(yRange);
+        var xAxis = d3.axisBottom(xRange).tickSize(-height);
+        var yAxis = d3.axisLeft(yRange).tickSize(-width);
 
         var svg = d3.select(container).append("svg")
+            .attr("id", "scatter")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
           .append("g")

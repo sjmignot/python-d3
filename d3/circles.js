@@ -4,6 +4,7 @@ define('circles', ['d3'], function (d3) {
     function draw(container, data, width, height) {
         var svg = d3.select(container).append("svg")
             .attr('width', width)
+            .attr("id", "circles")
             .attr('height', height);
         svg.selectAll('circle')
             .data(data)
